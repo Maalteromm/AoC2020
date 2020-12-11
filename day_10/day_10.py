@@ -1,6 +1,6 @@
 class adapter_array:
   '''Class for dealing with the joltage differential between the output and
-  the device built-in adapter. Use much adpters!'''
+  the device built-in adapter. Use much adpters!!'''
   def __init__(self, filename='input'):
     self.filename=filename
     self.test('p1')
