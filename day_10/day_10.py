@@ -21,10 +21,11 @@ class adapter_array:
     data.sort()
     jolt_diff = [data[ind+1] - data[ind] for ind in range(len(data) - 1)]
     j1, j3 = jolt_diff.count(1), jolt_diff.count(3)
-    return j1, j3, jolt_diff
+    return j1, j3, jolt_diff, data
 
   def adapter_arrangement(self, data, jolt_diff):
     #print('------------ 1 ------------')
+    #print('len data: ', len(data), 'len jolt_jiff: ', len(jolt_diff))
     j3_inds = [ind+1 for ind, val in enumerate(jolt_diff) if val == 3]
     j3_inds = [0] + j3_inds
     section_arrangements = []
@@ -71,7 +72,7 @@ class adapter_array:
     testflag = 0
     sample = [28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23, 49, 45, 19, 38,
               39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]
-    j1, j3, jolt_diff = self.joltage_difference(sample)
+    j1, j3, jolt_diff, sample = self.joltage_difference(sample)
     if j1 == 22 and j3 == 10 and part == 'p1':
       testflag = 1
     elif j1 == 22 and j3 == 10 and part == 'p2':
@@ -83,8 +84,7 @@ class adapter_array:
     return j1, j3
 
   def day_10(self, part):
-    data = self.load_file()
-    j1, j3, jolt_diff = self.joltage_difference(data)
+    j1, j3, jolt_diff, data = self.joltage_difference(self.load_file())
     if part == 'p1':
       answer = j1 * j3
       print('Answer {}: {}'.format(part, answer))
